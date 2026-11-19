@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ThemeSwitch } from '@/components/theme/ThemeSwitch'
 import { Link } from '@/i18n/navigation'
 import { createSupabaseServer } from '@/lib/supabase/server'
 import { signOut } from '@/server/auth'
@@ -16,20 +17,23 @@ export default async function MePage({ params }: { params: Promise<{ locale: str
   const chip = 'inline-flex min-h-11 items-center rounded-full border px-4'
   return (
     <main className="mx-auto max-w-3xl space-y-6 px-4 py-8">
-      <h1 className="text-2xl font-extrabold">{t('title')}</h1>
-      <section className="rounded-2xl bg-white p-4">
+      <h1 className="font-display text-3xl font-bold text-ink">{t('title')}</h1>
+      <section className="rounded-2xl border border-line bg-surface p-4 text-ink">
         <h2 className="font-semibold">{c('language')}</h2>
         <div className="mt-3 flex gap-2">
-          <Link href="/me" locale="vi" className={`${chip} ${locale === 'vi' ? 'border-jade text-jade' : 'border-night/20'}`}>Tiếng Việt</Link>
-          <Link href="/me" locale="en" className={`${chip} ${locale === 'en' ? 'border-jade text-jade' : 'border-night/20'}`}>English</Link>
+          <Link href="/me" locale="vi" className={`${chip} ${locale === 'vi' ? 'border-jade text-jade' : 'border-line'}`}>Tiếng Việt</Link>
+          <Link href="/me" locale="en" className={`${chip} ${locale === 'en' ? 'border-jade text-jade' : 'border-line'}`}>English</Link>
         </div>
       </section>
-      <section className="rounded-2xl bg-white p-4">
+      <section className="rounded-2xl border border-line bg-surface p-4 text-ink">
+        <ThemeSwitch />
+      </section>
+      <section className="rounded-2xl border border-line bg-surface p-4 text-ink">
         {email ? (
           <>
             <p className="break-all">{t('signedInAs')}: {email}</p>
             <form action={signOut} className="mt-3">
-              <button className={`${chip} border-night/20`}>{c('signOut')}</button>
+              <button className={`${chip} border-line`}>{c('signOut')}</button>
             </form>
           </>
         ) : (

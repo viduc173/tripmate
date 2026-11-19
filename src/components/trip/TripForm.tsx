@@ -13,12 +13,12 @@ function todayInVietnam(): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' }).format(new Date())
 }
 
-export function TripForm({ destinations }: { destinations: Destination[] }) {
+export function TripForm({ destinations, initialDestinationId }: { destinations: Destination[]; initialDestinationId?: string }) {
   const t = useTranslations('trip')
   const [pending, startTransition] = useTransition()
   const [error, setError] = useState<string>()
   const [form, setForm] = useState<TripInput>({
-    destinationId: destinations[0]?.id ?? '',
+    destinationId: destinations.find((d) => d.id === initialDestinationId)?.id ?? destinations[0]?.id ?? '',
     startDate: todayInVietnam(),
     days: 3,
     nights: 2,
@@ -28,7 +28,7 @@ export function TripForm({ destinations }: { destinations: Destination[] }) {
     transport: 'coach_grab',
   })
   const set = (patch: Partial<TripInput>) => setForm((f) => ({ ...f, ...patch }))
-  const field = 'mt-1 w-full rounded-xl border border-night/20 bg-white px-3 py-3'
+  const field = 'mt-1 w-full rounded-xl border border-line bg-surface px-3 py-3'
   const errors = { invalid: t('errorInvalid'), auth: t('errorAuth'), save: t('errorSave') } as const
 
   return (
@@ -97,7 +97,7 @@ export function TripForm({ destinations }: { destinations: Destination[] }) {
 
       {error && <p role="alert" className="rounded-xl bg-amber-soft p-3">{error}</p>}
 
-      <button type="submit" disabled={pending} className="min-h-12 w-full rounded-xl bg-jade px-4 py-3 font-semibold text-white disabled:opacity-60">
+      <button type="submit" disabled={pending} className="min-h-12 w-full rounded-xl bg-jade px-4 py-3 font-semibold text-on-jade disabled:opacity-60">
         {pending ? t('saving') : t('create')}
       </button>
     </form>

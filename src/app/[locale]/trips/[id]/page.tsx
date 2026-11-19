@@ -14,7 +14,7 @@ export default async function TripPage({ params }: { params: Promise<{ locale: s
   if (!trip) notFound()
 
   return (
-    <main className="mx-auto max-w-xl px-4 py-8">
+    <main className="mx-auto max-w-xl px-4 pt-4 pb-8">
       {trip.input.items.length === 0 && <p className="mb-4 rounded-xl bg-amber-soft p-3">{t('empty')}</p>}
       <ItineraryView
         cacheKey={`trip:${id}`}

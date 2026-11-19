@@ -17,16 +17,16 @@ export default async function TripsPage({ params }: { params: Promise<{ locale: 
     : { data: [] }
   const en = locale === 'en'
   return (
-    <main className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="text-2xl font-extrabold">{t('title')}</h1>
-      {!signedIn && <p className="mt-4">{t('signIn')}</p>}
-      {signedIn && (trips ?? []).length === 0 && <p className="mt-4">{t('none')}</p>}
+    <main className="mx-auto max-w-xl px-4 pt-6 pb-8">
+      <h1 className="font-display text-3xl font-bold text-ink">{t('title')}</h1>
+      {!signedIn && <p className="mt-4 text-muted">{t('signIn')}</p>}
+      {signedIn && (trips ?? []).length === 0 && <p className="mt-4 text-muted">{t('none')}</p>}
       <ul className="mt-4 space-y-3">
         {(trips ?? []).map((trip) => {
           const d = (Array.isArray(trip.destinations) ? trip.destinations[0] : trip.destinations) as { name_vi: string; name_en: string } | null
           return (
             <li key={trip.id}>
-              <Link href={`/trips/${trip.id}`} className="block rounded-2xl bg-white p-4 font-semibold">
+              <Link href={`/trips/${trip.id}`} className="block rounded-2xl border border-line bg-surface p-4 font-semibold text-ink hover:border-jade">
                 {en ? d?.name_en : d?.name_vi} {durationLabel(trip.days, trip.nights)} · {trip.start_date.split('-').reverse().join('/')}
               </Link>
             </li>

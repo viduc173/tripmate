@@ -7,8 +7,8 @@ export default async function DemoPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale)
   const t = await getTranslations('itinerary')
   return (
-    <main className="mx-auto max-w-xl space-y-4 px-4 py-8">
-      <p className="rounded-xl border border-jade/30 bg-white p-3 text-sm">{t('sample')}</p>
+    <main className="mx-auto max-w-xl space-y-4 px-4 pt-4 pb-8">
+      <p className="rounded-xl bg-sky-soft p-3 text-sm text-sky-ink">{t('sample')}</p>
       <ItineraryView cacheKey="trip:demo" title="Sa Pa 3N2Đ" initial={SAMPLE_SAPA} />
     </main>
   )

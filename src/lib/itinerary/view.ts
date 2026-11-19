@@ -3,6 +3,7 @@ import { estimateTrip, type CostBreakdown, type Transport } from '@/lib/cost/est
 import { DEFAULT_ROOM_PER_NIGHT, FOOD_PER_PERSON_PER_DAY } from '@/lib/cost/rates'
 import { buildTripDays } from '@/lib/schedule/buildTripDays'
 import { scheduleDay } from '@/lib/schedule/scheduleDay'
+import type { Weather } from '@/lib/sky/presets'
 
 export type ViewPlace = {
   id: string
@@ -28,10 +29,12 @@ export type ItineraryInput = {
   outbound?: Leg
   return?: Leg
   items: { itemId: string; dayIndex: number; position: number; place: ViewPlace }[]
+  /** Forecast per day index, when known. Absent means no weather claim is shown. */
+  weatherByDay?: Weather[]
 }
 
 export type ViewStop = { itemId: string; place: ViewPlace; start: string; end: string; rideKm: number }
-export type ViewDay = { index: number; date: string; startTime: string; light: boolean; stops: ViewStop[] }
+export type ViewDay = { index: number; date: string; startTime: string; light: boolean; stops: ViewStop[]; weather?: Weather }
 export type ItineraryView = {
   days: ViewDay[]
   outbound?: Leg
@@ -54,7 +57,7 @@ export function buildItineraryView(i: ItineraryInput): ItineraryView {
       { startTime: d.startTime, transport: i.transport },
     )
     const stops = scheduled.map((s, k) => ({ itemId: dayItems[k].itemId, place: dayItems[k].place, start: s.start, end: s.end, rideKm: s.rideKm }))
-    return { ...d, stops }
+    return { ...d, stops, weather: i.weatherByDay?.[d.index] }
   })
   const allStops = days.flatMap((d) => d.stops)
   const cost = estimateTrip({

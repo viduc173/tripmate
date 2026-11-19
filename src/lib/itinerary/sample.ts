@@ -15,6 +15,8 @@ export const SAMPLE_SAPA: ItineraryInput = {
   roomPriceVnd: 350_000,
   outbound: { operator: 'Xe giường nằm (mẫu)', departTime: '22:00', arriveTime: '05:30', overnight: true, priceVnd: 300_000 },
   return: { operator: 'Limousine (mẫu)', departTime: '14:00', arriveTime: '19:30', overnight: false, priceVnd: 350_000 },
+  // Illustrative weather for the sample only (Sa Pa in late November: clear, foggy, drizzle).
+  weatherByDay: ['clear', 'fog', 'rain'],
   items: [
     { itemId: 'd0-1', dayIndex: 0, position: 0, place: { id: 'pho-sapa', name: 'Ăn sáng, gửi đồ ở homestay', category: 'food', durationMin: 60, priceVnd: 0, lat: 22.3356, lng: 103.8433 } },
     { itemId: 'd0-2', dayIndex: 0, position: 1, place: { id: 'cat-cat', name: 'Bản Cát Cát', category: 'sight', durationMin: 150, priceVnd: 150_000, lat: 22.3296, lng: 103.8344 } },
