@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-jade: #1f6b54;
+  --color-night: #0f1e1a;
+  --color-mist: #f2f4f1;
+  --color-amber-soft: #fbefd9;
+  --font-sans: var(--font-body), system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-mist);
+  color: var(--color-night);
+}
