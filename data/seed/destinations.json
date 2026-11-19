@@ -1,0 +1,7 @@
+[
+  { "id": "ha-noi", "name_vi": "Hà Nội", "name_en": "Hanoi", "province_vi": "TP. Hà Nội", "province_en": "Hanoi", "region": "bac", "verified": true, "lat": 21.0285, "lng": 105.8542 },
+  { "id": "ha-long", "name_vi": "Vịnh Hạ Long", "name_en": "Ha Long Bay", "province_vi": "Quảng Ninh", "province_en": "Quang Ninh", "region": "bac", "verified": true, "lat": 20.9517, "lng": 107.08 },
+  { "id": "sapa", "name_vi": "Sa Pa", "name_en": "Sa Pa", "province_vi": "Lào Cai", "province_en": "Lao Cai", "region": "bac", "verified": true, "lat": 22.3364, "lng": 103.8438 },
+  { "id": "ninh-binh", "name_vi": "Ninh Bình (Tràng An – Tam Cốc)", "name_en": "Ninh Binh (Trang An – Tam Coc)", "province_vi": "Ninh Bình", "province_en": "Ninh Binh", "region": "bac", "verified": true, "lat": 20.2539, "lng": 105.975 },
+  { "id": "ha-giang", "name_vi": "Hà Giang", "name_en": "Ha Giang", "province_vi": "Tuyên Quang (Hà Giang cũ)", "province_en": "Tuyen Quang (formerly Ha Giang)", "region": "bac", "verified": true, "lat": 22.8233, "lng": 104.9836 }
+]
