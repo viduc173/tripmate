@@ -3,6 +3,7 @@ import { Be_Vietnam_Pro } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { RegisterSW } from '@/components/pwa/RegisterSW'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 
@@ -32,6 +33,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale}>
       <body className={`${body.variable} font-sans antialiased`}>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <RegisterSW />
       </body>
     </html>
   )

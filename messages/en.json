@@ -43,6 +43,26 @@
     "outbound": "Outbound",
     "return": "Return",
     "notFound": "Trip not found.",
-    "empty": "No places for this destination yet. Data is being added."
+    "empty": "No places for this destination yet. Data is being added.",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "remove": "Remove",
+    "lightDay": "Easy first day: you just got off the bus, rest and have breakfast first.",
+    "ride": "{km} km ride",
+    "overnight": "Overnight bus",
+    "perPersonTotal": "{amount}/person",
+    "groupTotal": "Group {amount}",
+    "overBudget": "Over budget by {amount}",
+    "withinBudget": "Within budget",
+    "estimate": "Estimated costs, updated as data comes in.",
+    "offline": "Showing the saved copy (offline).",
+    "sample": "Sample with illustrative data, not a real itinerary.",
+    "lodging": "Stay",
+    "legs": "Bus there and back",
+    "tickets": "Tickets",
+    "rides": "Local rides",
+    "food": "Food",
+    "free": "Free",
+    "saveError": "Could not save the change, please retry."
   }
 }
