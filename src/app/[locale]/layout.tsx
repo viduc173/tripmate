@@ -3,10 +3,12 @@ import { Be_Vietnam_Pro, Fraunces } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { SmoothScroll } from '@/components/motion/SmoothScroll'
 import { TabBar } from '@/components/nav/TabBar'
 import { ThemeScript } from '@/components/theme/ThemeScript'
 import { RegisterSW } from '@/components/pwa/RegisterSW'
 import { routing } from '@/i18n/routing'
+import 'lenis/dist/lenis.css'
 import '../globals.css'
 
 const body = Be_Vietnam_Pro({
@@ -48,6 +50,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <TabBar />
         </NextIntlClientProvider>
         <RegisterSW />
+        <SmoothScroll />
       </body>
     </html>
   )
