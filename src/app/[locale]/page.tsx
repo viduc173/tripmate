@@ -1,7 +1,12 @@
+import { createClient } from '@supabase/supabase-js'
+import { BadgeCheck, MountainSnow, TriangleAlert } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ExploreHero } from '@/components/explore/ExploreHero'
+import { AppHeader } from '@/components/layout/AppHeader'
 import { StaggerList } from '@/components/motion/StaggerList'
 import { Link } from '@/i18n/navigation'
-import { createClient } from '@supabase/supabase-js'
+import { DEST_META, DEST_ORDER } from '@/lib/destinations/meta'
+import type { MapDestination } from '@/lib/map/geo'
 import seed from '../../../data/seed/destinations.json'
 
 export const revalidate = 3600
@@ -19,7 +24,6 @@ async function loadDestinations(): Promise<Dest[]> {
       .from('destinations')
       .select('id, name_vi, name_en, province_vi, province_en')
       .eq('verified', true)
-      .order('id')
     return data && data.length > 0 ? data : fallback
   } catch {
     return fallback
@@ -31,27 +35,57 @@ export default async function Explore({ params }: { params: Promise<{ locale: st
   setRequestLocale(locale)
   const t = await getTranslations('explore')
   const en = locale === 'en'
-  const destinations = await loadDestinations()
+  const rows = (await loadDestinations()).sort((a, b) => DEST_ORDER.indexOf(a.id) - DEST_ORDER.indexOf(b.id))
+  const mapDests: MapDestination[] = rows.flatMap((d) => {
+    const m = DEST_META[d.id]
+    return m ? [{ id: d.id, name: en ? d.name_en : d.name_vi, lon: m.lon, lat: m.lat, verified: true, region: 'bac' as const }] : []
+  })
+
   return (
-    <main className="mx-auto max-w-3xl px-4 py-8">
-      <section className="rounded-3xl bg-night px-5 py-8 text-white">
-        <h1 className="text-3xl font-extrabold">{t('title')}</h1>
-        <p className="mt-2 text-white/80">{t('subtitle')}</p>
-        <Link href="/demo" className="mt-5 inline-flex min-h-11 items-center rounded-full bg-white px-4 font-semibold text-night">
-          {t('sample')}
-        </Link>
+    <main className="mx-auto max-w-5xl space-y-6 px-4 pt-4 pb-8 md:pt-8">
+      <AppHeader />
+      <ExploreHero verified={mapDests} />
+
+      <section>
+        <div className="flex items-baseline justify-between">
+          <h2 className="text-lg font-bold">{t('verifiedTitle')}</h2>
+          <Link href="/plan" className="text-sm font-semibold text-jade">{t('seeAll')}</Link>
+        </div>
+        <StaggerList className="no-scrollbar -mx-4 mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 lg:grid-cols-5">
+          {rows.map((d) => {
+            const m = DEST_META[d.id]
+            const name = en ? d.name_en : d.name_vi
+            return (
+              <li key={d.id} className="w-[11.5rem] shrink-0 snap-start overflow-hidden rounded-[1.25rem] bg-surface md:w-auto">
+                <Link href={`/plan?d=${d.id}`} className="block">
+                  <div className={`flex h-24 items-end justify-between p-3.5 text-white ${m?.tone ?? 'bg-jade'}`}>
+                    <span className="font-display text-xl leading-tight font-bold break-words">{name.split(' (')[0]}</span>
+                    <MountainSnow size={22} strokeWidth={1.5} className="shrink-0 opacity-70" aria-hidden />
+                  </div>
+                  <div className="space-y-2 p-3.5">
+                    <p className="text-xs leading-snug text-muted">
+                      {en ? d.province_en : d.province_vi}
+                      {m && ` · ${en ? m.travel_en : m.travel_vi}`}
+                    </p>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-jade-soft px-2 py-0.5 text-[0.7rem] font-semibold text-jade">
+                      <BadgeCheck size={12} aria-hidden />
+                      {t('verified')}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            )
+          })}
+        </StaggerList>
       </section>
-      <StaggerList className="mt-6 grid gap-3 sm:grid-cols-2">
-        {destinations.map((d) => (
-          <li key={d.id} className="rounded-2xl bg-white p-4">
-            <p className="text-lg font-bold break-words">{en ? d.name_en : d.name_vi}</p>
-            <p className="text-sm break-words text-night/70">{en ? d.province_en : d.province_vi}</p>
-            <Link href="/plan" className="mt-3 inline-flex min-h-11 items-center font-semibold text-jade">
-              {t('planThis')} →
-            </Link>
-          </li>
-        ))}
-      </StaggerList>
+
+      <section className="flex gap-3 rounded-[1.25rem] bg-amber-soft p-4" aria-labelledby="season-tip">
+        <TriangleAlert size={22} className="mt-0.5 shrink-0 text-amber-ink" aria-hidden />
+        <div>
+          <h2 id="season-tip" className="font-semibold text-amber-ink">{t('seasonTitle')}</h2>
+          <p className="mt-1 text-sm leading-relaxed">{t('seasonBody')}</p>
+        </div>
+      </section>
     </main>
   )
 }

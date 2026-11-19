@@ -70,7 +70,19 @@
     "title": "Explore",
     "subtitle": "5 northern destinations with verified data.",
     "planThis": "Plan",
-    "sample": "See a sample itinerary"
+    "sample": "See a sample itinerary",
+    "heroTitle": "Where to next?",
+    "heroHint": "Spin the 3D map and tap a destination to see a suggested plan.",
+    "regions": "Choose a region",
+    "region_bac": "North",
+    "region_trung": "Central",
+    "region_nam": "South",
+    "verifiedTitle": "Verified destinations",
+    "seeAll": "See all",
+    "verified": "Verified",
+    "unverified": "Not verified yet, suggestions only",
+    "seasonTitle": "Sa Pa in Dec–Jan",
+    "seasonBody": "It can drop below 5°C with thick fog on the Ô Quy Hồ pass. Pack warm layers and cross the pass before dark."
   },
   "trips": {
     "title": "Your trips",
@@ -81,5 +93,46 @@
     "title": "Me",
     "signedInAs": "Signed in as",
     "notSignedIn": "Not signed in."
+  },
+  "theme": {
+    "label": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "chat": {
+    "hello": "Hi! Where do you want to go, for how long, how many people and roughly what budget? For example: “Sa Pa 3N2Đ, 4 người, tầm 8 triệu”.",
+    "notUnderstood": "I didn't catch that. Pick a quick option below.",
+    "unverified": "{name} has no verified data yet. TripMate will offer reference suggestions there soon; for now pick a verified destination.",
+    "ask_destination": "Where would you like to go?",
+    "ask_duration": "How many days and nights?",
+    "ask_party": "How many people?",
+    "ask_budget": "Roughly what budget?",
+    "ask_scope": "Is that for the whole group or per person?",
+    "ask_origin": "Where are you leaving from?",
+    "perPerson": "{amount}/person",
+    "groupTotal": "{amount} for the group",
+    "people": "{n} people",
+    "withinBudget": "Within budget",
+    "overBudget": "Short by {amount}",
+    "row_coach": "Coach both ways",
+    "row_stay": "Stay {n} nights (2 per room)",
+    "row_daily": "Food, tickets, Grab",
+    "expected": "Expected",
+    "estimateNote": "Estimate before choosing places; the itinerary refines it.",
+    "coachUnknown": "No coach fares from your city yet, so the bus isn't included.",
+    "seeItinerary": "See the {n}-day itinerary",
+    "signInToCreate": "Sign in with Google to create the itinerary",
+    "creating": "Creating…",
+    "placeholder": "Message TripMate…",
+    "send": "Send",
+    "error_invalid": "Some details are not valid. Check nights and budget.",
+    "error_auth": "Please sign in first.",
+    "error_save": "Could not save. Please try again."
+  },
+  "plan": {
+    "title": "New trip",
+    "chat": "Chat",
+    "form": "Fill in a form"
   }
 }

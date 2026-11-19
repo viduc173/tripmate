@@ -70,7 +70,19 @@
     "title": "Khám phá",
     "subtitle": "5 điểm đến miền Bắc đã có dữ liệu kiểm chứng.",
     "planThis": "Lên lịch",
-    "sample": "Xem lịch trình mẫu"
+    "sample": "Xem lịch trình mẫu",
+    "heroTitle": "Bạn muốn đi đâu?",
+    "heroHint": "Xoay bản đồ 3D, chạm vào một điểm đến để xem lịch gợi ý.",
+    "regions": "Chọn miền",
+    "region_bac": "Miền Bắc",
+    "region_trung": "Trung",
+    "region_nam": "Nam",
+    "verifiedTitle": "Điểm đến đã kiểm chứng",
+    "seeAll": "Xem tất cả",
+    "verified": "Đã kiểm chứng",
+    "unverified": "Chưa kiểm chứng, sẽ là gợi ý tham khảo",
+    "seasonTitle": "Sa Pa tháng 12–1",
+    "seasonBody": "Có thể xuống dưới 5°C, sương mù dày trên đèo Ô Quy Hồ. Mang áo ấm, nên qua đèo trước khi trời tối."
   },
   "trips": {
     "title": "Chuyến đi của bạn",
@@ -81,5 +93,46 @@
     "title": "Tôi",
     "signedInAs": "Đang đăng nhập",
     "notSignedIn": "Chưa đăng nhập."
+  },
+  "theme": {
+    "label": "Giao diện",
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Theo máy"
+  },
+  "chat": {
+    "hello": "Chào bạn! Bạn muốn đi đâu, mấy ngày, bao nhiêu người và ngân sách khoảng bao nhiêu? Ví dụ: “Sa Pa 3N2Đ, 4 người, tầm 8 triệu”.",
+    "notUnderstood": "Mình chưa hiểu ý này. Bạn chọn nhanh bên dưới nhé.",
+    "unverified": "{name} chưa có dữ liệu kiểm chứng. Bản tới TripMate sẽ gợi ý tham khảo cho nơi này; bây giờ bạn chọn một điểm đã kiểm chứng nhé.",
+    "ask_destination": "Bạn muốn đi đâu?",
+    "ask_duration": "Đi mấy ngày mấy đêm?",
+    "ask_party": "Nhóm mình mấy người?",
+    "ask_budget": "Ngân sách khoảng bao nhiêu?",
+    "ask_scope": "Số tiền đó là cho cả nhóm hay mỗi người?",
+    "ask_origin": "Nhóm mình đi từ đâu?",
+    "perPerson": "{amount}/người",
+    "groupTotal": "{amount} cả nhóm",
+    "people": "{n} người",
+    "withinBudget": "Đủ ngân sách",
+    "overBudget": "Thiếu {amount}",
+    "row_coach": "Xe khách 2 chiều",
+    "row_stay": "Ở {n} đêm (2 người/phòng)",
+    "row_daily": "Ăn uống, vé, Grab",
+    "expected": "Dự kiến",
+    "estimateNote": "Ước lượng trước khi chọn địa điểm; con số sẽ chính xác hơn trong lịch trình.",
+    "coachUnknown": "Chưa có giá xe từ nơi bạn đi, nên chưa tính tiền xe.",
+    "seeItinerary": "Xem lịch trình {n} ngày",
+    "signInToCreate": "Đăng nhập bằng Google để tạo lịch trình",
+    "creating": "Đang tạo…",
+    "placeholder": "Nhắn cho TripMate…",
+    "send": "Gửi",
+    "error_invalid": "Thông tin chưa hợp lệ, kiểm tra lại số đêm và ngân sách.",
+    "error_auth": "Bạn cần đăng nhập trước.",
+    "error_save": "Chưa lưu được, thử lại sau."
+  },
+  "plan": {
+    "title": "Lên lịch mới",
+    "chat": "Chat",
+    "form": "Điền form"
   }
 }
