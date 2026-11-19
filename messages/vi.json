@@ -80,7 +80,13 @@
     "costDetail": "Chi tiết chi phí",
     "pillGroup": "{amount} cả nhóm",
     "evening": "Tối {date}",
-    "sections": "Phần của chuyến đi"
+    "sections": "Phần của chuyến đi",
+    "weather_clear": "Trời quang",
+    "weather_cloudy": "Nhiều mây",
+    "weather_rain": "Mưa",
+    "weather_storm": "Dông",
+    "weather_snow": "Tuyết",
+    "weather_fog": "Sương mù"
   },
   "explore": {
     "title": "Khám phá",
@@ -149,6 +155,7 @@
   "plan": {
     "title": "Lên lịch mới",
     "chat": "Chat",
-    "form": "Điền form"
+    "form": "Điền form",
+    "subtitle": "Kể cho TripMate nghe chuyến đi bạn muốn, hoặc tự điền từng mục."
   }
 }

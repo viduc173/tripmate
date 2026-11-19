@@ -80,7 +80,13 @@
     "costDetail": "Cost breakdown",
     "pillGroup": "{amount} for the group",
     "evening": "Evening {date}",
-    "sections": "Trip sections"
+    "sections": "Trip sections",
+    "weather_clear": "Clear",
+    "weather_cloudy": "Cloudy",
+    "weather_rain": "Rain",
+    "weather_storm": "Storm",
+    "weather_snow": "Snow",
+    "weather_fog": "Fog"
   },
   "explore": {
     "title": "Explore",
@@ -149,6 +155,7 @@
   "plan": {
     "title": "New trip",
     "chat": "Chat",
-    "form": "Fill in a form"
+    "form": "Fill in a form",
+    "subtitle": "Tell TripMate the trip you have in mind, or fill in each field yourself."
   }
 }

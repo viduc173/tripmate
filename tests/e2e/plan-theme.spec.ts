@@ -32,3 +32,19 @@ test('dark mode: choice persists across reloads and sets data-theme', async ({ p
   const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor)
   expect(bg).not.toBe('rgb(242, 244, 241)')
 })
+
+test('shader backdrops: day skies share one WebGL context and draw; reduced motion still renders', async ({ browser }) => {
+  for (const reducedMotion of ['no-preference', 'reduce'] as const) {
+    const ctx = await browser.newContext({ reducedMotion, viewport: { width: 360, height: 780 } })
+    const page = await ctx.newPage()
+    await page.goto('/demo')
+    await expect(page.getByTestId('day-sky').nth(1)).toHaveAttribute('data-weather', 'fog')
+    await expect(page.getByTestId('backdrop-sky').first()).toHaveClass(/opacity-100/, { timeout: 10_000 })
+    // Only the 2D canvases are in the DOM; the shared WebGL canvas never is.
+    expect(await page.locator('canvas[data-testid^="backdrop-"]').count()).toBe(3)
+    await page.goto('/plan')
+    await expect(page.getByTestId('backdrop-emerald')).toHaveClass(/opacity-100/, { timeout: 10_000 })
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+    await ctx.close()
+  }
+})
