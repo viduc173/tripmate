@@ -8,7 +8,7 @@ export function SpotRow({ stop, first, last, onMove, onRemove }: Props) {
   const t = useTranslations('itinerary')
   const btn = 'min-h-11 min-w-11 rounded-lg border border-night/15 px-2 text-sm disabled:opacity-30'
   return (
-    <li className="flex items-start gap-3 py-3" data-testid="spot" data-place={stop.place.id}>
+    <li className="flex items-start gap-3 py-3" data-testid="spot" data-place={stop.place.id} data-flip-id={stop.itemId}>
       <time className="w-12 shrink-0 pt-0.5 font-semibold tabular-nums" data-testid="spot-time">{stop.start}</time>
       <div className="min-w-0 flex-1">
         <p className="font-medium break-words">{stop.place.name}</p>

@@ -1,8 +1,9 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useEffect, useMemo, useState, useTransition } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useTransition } from 'react'
 import { buildItineraryView, type ItineraryInput } from '@/lib/itinerary/view'
+import { captureFlip, playFlip, type FlipState } from '@/lib/motion'
 import { reorder } from '@/lib/schedule/reorder'
 import { CostSummary } from './CostSummary'
 import { DayCard } from './DayCard'
@@ -32,6 +33,14 @@ export function ItineraryView({ cacheKey, title, initial, onReorder, onRemove }:
   const [offline, setOffline] = useState(false)
   const [, startTransition] = useTransition()
   const view = useMemo(() => buildItineraryView(input), [input])
+  const rootRef = useRef<HTMLDivElement>(null)
+  const flip = useRef<FlipState | null>(null)
+
+  // Animate rows from their old position to the new one after a reorder or removal.
+  useLayoutEffect(() => {
+    playFlip(flip.current)
+    flip.current = null
+  }, [input])
 
   useEffect(() => saveCache(cacheKey, { title, input }), [cacheKey, title, input])
   useEffect(() => {
@@ -48,6 +57,7 @@ export function ItineraryView({ cacheKey, title, initial, onReorder, onRemove }:
   const move = (dayIndex: number, from: number, to: number) => {
     const ids = reorder(view.days[dayIndex].stops.map((s) => s.itemId), from, to)
     const previous = input
+    flip.current = captureFlip(rootRef.current)
     setInput((cur) => ({
       ...cur,
       items: cur.items.map((it) => (it.dayIndex === dayIndex ? { ...it, position: ids.indexOf(it.itemId) } : it)),
@@ -66,6 +76,7 @@ export function ItineraryView({ cacheKey, title, initial, onReorder, onRemove }:
   const remove = onRemove
     ? (itemId: string) => {
         const previous = input
+        flip.current = captureFlip(rootRef.current)
         setInput((cur) => ({ ...cur, items: cur.items.filter((it) => it.itemId !== itemId) }))
         startTransition(async () => {
           const res = await onRemove(itemId)
@@ -78,7 +89,7 @@ export function ItineraryView({ cacheKey, title, initial, onReorder, onRemove }:
     : undefined
 
   return (
-    <div className="space-y-4">
+    <div ref={rootRef} className="space-y-4">
       <h1 className="text-2xl font-bold break-words" data-testid="trip-title">{title}</h1>
       {offline && <p className="rounded-xl bg-amber-soft p-3 text-sm">{t('offline')}</p>}
       {error && <p role="alert" className="rounded-xl bg-amber-soft p-3 text-sm">{t('saveError')}</p>}
