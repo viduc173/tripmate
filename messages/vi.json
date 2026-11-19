@@ -4,7 +4,8 @@
     "tagline": "Lên lịch du lịch Việt Nam theo ngày, chi phí và số người.",
     "language": "Ngôn ngữ",
     "perPerson": "mỗi người",
-    "groupTotal": "cả nhóm"
+    "groupTotal": "cả nhóm",
+    "signOut": "Đăng xuất"
   },
   "nav": {
     "explore": "Khám phá",
@@ -18,12 +19,30 @@
     "duration": "Thời gian",
     "partySize": "Số người",
     "budget": "Ngân sách",
-    "create": "Tạo lịch trình"
+    "create": "Tạo lịch trình",
+    "title": "Lên lịch chuyến đi",
+    "custom": "Tự chọn",
+    "days": "Ngày",
+    "nights": "Đêm",
+    "scopeGroup": "Cả nhóm",
+    "scopePerson": "Mỗi người",
+    "transport": "Di chuyển",
+    "coachGrab": "Xe khách + Grab",
+    "motorbike": "Xe máy",
+    "signInToSave": "Đăng nhập để lưu chuyến đi",
+    "signInGoogle": "Đăng nhập bằng Google",
+    "errorInvalid": "Thông tin chưa hợp lệ, kiểm tra lại số đêm, số người và ngân sách.",
+    "errorAuth": "Bạn cần đăng nhập trước.",
+    "errorSave": "Chưa lưu được, thử lại sau.",
+    "saving": "Đang tạo…",
+    "nightsHint": "Đêm ngủ trên xe khách không tính."
   },
   "itinerary": {
     "title": "Lịch trình",
     "day": "Ngày {n}",
     "outbound": "Chiều đi",
-    "return": "Chiều về"
+    "return": "Chiều về",
+    "notFound": "Không tìm thấy chuyến đi.",
+    "empty": "Chưa có địa điểm cho điểm đến này. Dữ liệu đang được bổ sung."
   }
 }

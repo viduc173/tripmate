@@ -4,7 +4,8 @@
     "tagline": "Plan Vietnam trips by day, budget and group size.",
     "language": "Language",
     "perPerson": "per person",
-    "groupTotal": "whole group"
+    "groupTotal": "whole group",
+    "signOut": "Sign out"
   },
   "nav": {
     "explore": "Explore",
@@ -18,12 +19,30 @@
     "duration": "Duration",
     "partySize": "People",
     "budget": "Budget",
-    "create": "Create itinerary"
+    "create": "Create itinerary",
+    "title": "Plan a trip",
+    "custom": "Custom",
+    "days": "Days",
+    "nights": "Nights",
+    "scopeGroup": "Whole group",
+    "scopePerson": "Per person",
+    "transport": "Getting around",
+    "coachGrab": "Coach + Grab",
+    "motorbike": "Motorbike",
+    "signInToSave": "Sign in to save your trip",
+    "signInGoogle": "Sign in with Google",
+    "errorInvalid": "Some details are not valid. Check nights, people and budget.",
+    "errorAuth": "Please sign in first.",
+    "errorSave": "Could not save. Please try again.",
+    "saving": "Creating…",
+    "nightsHint": "Nights on an overnight bus don't count."
   },
   "itinerary": {
     "title": "Itinerary",
     "day": "Day {n}",
     "outbound": "Outbound",
-    "return": "Return"
+    "return": "Return",
+    "notFound": "Trip not found.",
+    "empty": "No places for this destination yet. Data is being added."
   }
 }
