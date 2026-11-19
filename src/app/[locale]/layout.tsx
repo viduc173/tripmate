@@ -3,6 +3,7 @@ import { Be_Vietnam_Pro } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { TabBar } from '@/components/nav/TabBar'
 import { RegisterSW } from '@/components/pwa/RegisterSW'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
@@ -10,7 +11,7 @@ import '../globals.css'
 const body = Be_Vietnam_Pro({
   variable: '--font-body',
   subsets: ['latin', 'vietnamese'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> }
@@ -31,8 +32,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale)
   return (
     <html lang={locale}>
-      <body className={`${body.variable} font-sans antialiased`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className={`${body.variable} font-sans antialiased pb-[calc(4rem+env(safe-area-inset-bottom))] md:pt-14 md:pb-0`}>
+        <NextIntlClientProvider>
+          {children}
+          <TabBar />
+        </NextIntlClientProvider>
         <RegisterSW />
       </body>
     </html>

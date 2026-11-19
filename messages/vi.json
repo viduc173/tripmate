@@ -11,7 +11,8 @@
     "explore": "Khám phá",
     "plan": "Lên lịch",
     "trips": "Chuyến đi",
-    "me": "Tôi"
+    "me": "Tôi",
+    "label": "Điều hướng chính"
   },
   "trip": {
     "destination": "Điểm đến",
@@ -64,5 +65,21 @@
     "food": "Ăn uống",
     "free": "Miễn phí",
     "saveError": "Chưa lưu được thay đổi, thử lại."
+  },
+  "explore": {
+    "title": "Khám phá",
+    "subtitle": "5 điểm đến miền Bắc đã có dữ liệu kiểm chứng.",
+    "planThis": "Lên lịch",
+    "sample": "Xem lịch trình mẫu"
+  },
+  "trips": {
+    "title": "Chuyến đi của bạn",
+    "none": "Chưa có chuyến đi nào.",
+    "signIn": "Đăng nhập để xem chuyến đi đã lưu."
+  },
+  "me": {
+    "title": "Tôi",
+    "signedInAs": "Đang đăng nhập",
+    "notSignedIn": "Chưa đăng nhập."
   }
 }

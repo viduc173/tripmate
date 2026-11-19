@@ -22,6 +22,6 @@ describe('messages parity', () => {
     for (const [k, v] of Object.entries({ ...fv, ...fe })) expect(v.trim(), k).not.toBe('')
   })
   it('has the base namespaces', () => {
-    for (const ns of ['nav', 'trip', 'itinerary', 'common']) expect(vi).toHaveProperty(ns)
+    for (const ns of ['nav', 'trip', 'itinerary', 'common', 'explore', 'trips', 'me']) expect(vi).toHaveProperty(ns)
   })
 })

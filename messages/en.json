@@ -11,7 +11,8 @@
     "explore": "Explore",
     "plan": "Plan",
     "trips": "Trips",
-    "me": "Me"
+    "me": "Me",
+    "label": "Main navigation"
   },
   "trip": {
     "destination": "Destination",
@@ -64,5 +65,21 @@
     "food": "Food",
     "free": "Free",
     "saveError": "Could not save the change, please retry."
+  },
+  "explore": {
+    "title": "Explore",
+    "subtitle": "5 northern destinations with verified data.",
+    "planThis": "Plan",
+    "sample": "See a sample itinerary"
+  },
+  "trips": {
+    "title": "Your trips",
+    "none": "No trips yet.",
+    "signIn": "Sign in to see saved trips."
+  },
+  "me": {
+    "title": "Me",
+    "signedInAs": "Signed in as",
+    "notSignedIn": "Not signed in."
   }
 }
