@@ -1,0 +1,29 @@
+{
+  "common": {
+    "appName": "TripMate",
+    "tagline": "Lên lịch du lịch Việt Nam theo ngày, chi phí và số người.",
+    "language": "Ngôn ngữ",
+    "perPerson": "mỗi người",
+    "groupTotal": "cả nhóm"
+  },
+  "nav": {
+    "explore": "Khám phá",
+    "plan": "Lên lịch",
+    "trips": "Chuyến đi",
+    "me": "Tôi"
+  },
+  "trip": {
+    "destination": "Điểm đến",
+    "startDate": "Ngày đi",
+    "duration": "Thời gian",
+    "partySize": "Số người",
+    "budget": "Ngân sách",
+    "create": "Tạo lịch trình"
+  },
+  "itinerary": {
+    "title": "Lịch trình",
+    "day": "Ngày {n}",
+    "outbound": "Chiều đi",
+    "return": "Chiều về"
+  }
+}
