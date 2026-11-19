@@ -1,0 +1,29 @@
+{
+  "common": {
+    "appName": "TripMate",
+    "tagline": "Plan Vietnam trips by day, budget and group size.",
+    "language": "Language",
+    "perPerson": "per person",
+    "groupTotal": "whole group"
+  },
+  "nav": {
+    "explore": "Explore",
+    "plan": "Plan",
+    "trips": "Trips",
+    "me": "Me"
+  },
+  "trip": {
+    "destination": "Destination",
+    "startDate": "Start date",
+    "duration": "Duration",
+    "partySize": "People",
+    "budget": "Budget",
+    "create": "Create itinerary"
+  },
+  "itinerary": {
+    "title": "Itinerary",
+    "day": "Day {n}",
+    "outbound": "Outbound",
+    "return": "Return"
+  }
+}
