@@ -44,7 +44,7 @@ export function TabBar() {
                 <span
                   aria-hidden
                   className={`flex h-7 items-center justify-center rounded-full transition-colors ${
-                    plan ? (active ? 'w-12 bg-jade text-white' : 'w-12 bg-jade-soft text-jade') : 'w-8'
+                    plan ? (active ? 'w-12 bg-jade text-on-jade' : 'w-12 bg-jade-soft text-jade') : 'w-8'
                   }`}
                 >
                   <Icon size={20} strokeWidth={active ? 2.2 : 1.8} />

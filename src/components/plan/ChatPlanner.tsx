@@ -12,7 +12,7 @@ import { durationLabel } from '@/lib/trip/schema'
 import { createTrip } from '@/server/trips'
 
 type Msg = { id: number; from: 'me' | 'bot'; text: string; field?: Field }
-type Props = { signedIn: boolean; destinations: { id: string; name: string }[]; signIn: () => void }
+type Props = { signedIn: boolean; destinations: { id: string; name: string }[]; signIn: () => void; initialDestinationId?: string }
 
 const QUICK: Record<Field, { label: string; text: string }[]> = {
   destination: [
@@ -45,9 +45,9 @@ const QUICK: Record<Field, { label: string; text: string }[]> = {
   ],
 }
 
-export function ChatPlanner({ signedIn, destinations, signIn }: Props) {
+export function ChatPlanner({ signedIn, destinations, signIn, initialDestinationId }: Props) {
   const t = useTranslations('chat')
-  const [req, setReq] = useState<TripRequest>({})
+  const [req, setReq] = useState<TripRequest>(initialDestinationId ? { destinationId: initialDestinationId } : {})
   const [msgs, setMsgs] = useState<Msg[]>([{ id: 0, from: 'bot', text: t('hello') }])
   const [draft, setDraft] = useState('')
   const [pending, startTransition] = useTransition()
@@ -144,8 +144,8 @@ export function ChatPlanner({ signedIn, destinations, signIn }: Props) {
 
         {estimate && req.destinationId && (
           <li>
-            <section className="rounded-[1.25rem] bg-surface p-4" data-testid="chat-estimate">
-              <div className="flex items-center justify-between gap-3">
+            <section className="rounded-[1.25rem] border border-line bg-surface p-4 text-ink" data-testid="chat-estimate">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
                 <p className="text-lg font-bold tabular-nums">{t('perPerson', { amount: formatVnd(estimate.perPerson) })}</p>
                 <span
                   className={`inline-flex shrink-0 items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold ${

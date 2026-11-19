@@ -21,13 +21,13 @@ export function DurationPicker({ days, nights, onChange }: Props) {
               type="button"
               aria-pressed={active}
               onClick={() => onChange({ days: p.days, nights: p.nights })}
-              className={`${chip} ${active ? 'border-jade bg-jade text-white' : 'border-night/20 bg-white'}`}
+              className={`${chip} ${active ? 'border-jade bg-jade text-on-jade' : 'border-line bg-surface'}`}
             >
               {p.label}
             </button>
           )
         })}
-        <span className={`${chip} ${!isPreset ? 'border-jade' : 'border-transparent'} flex items-center gap-2 bg-white`}>
+        <span className={`${chip} ${!isPreset ? 'border-jade' : 'border-transparent'} flex items-center gap-2 bg-surface`}>
           {t('custom')}
           <label className="sr-only" htmlFor="days">{t('days')}</label>
           <select
@@ -50,7 +50,7 @@ export function DurationPicker({ days, nights, onChange }: Props) {
           </select>
         </span>
       </div>
-      <p className="mt-2 text-sm text-night/70">{t('nightsHint')}</p>
+      <p className="mt-2 text-sm text-muted">{t('nightsHint')}</p>
     </fieldset>
   )
 }

@@ -10,7 +10,7 @@ for (const vp of [{ width: 360, height: 780 }, { width: 1280, height: 800 }]) {
       test(`${path}: no horizontal scroll, tab targets ≥ 24px`, async ({ page }) => {
         await page.goto(path)
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
-        const tabs = page.getByRole('navigation', { name: /Điều hướng chính|Main navigation/ }).getByRole('link')
+        const tabs = page.getByRole('navigation', { name: /Điều hướng chính|Main navigation/ }).getByRole('link').filter({ hasNotText: 'TripMate' })
         await expect(tabs).toHaveCount(4)
         for (const box of await tabs.evaluateAll((els) => els.map((e) => e.getBoundingClientRect().toJSON()))) {
           expect(box.width).toBeGreaterThanOrEqual(24)

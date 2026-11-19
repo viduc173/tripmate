@@ -1,41 +1,21 @@
-import { createClient } from '@supabase/supabase-js'
 import { BadgeCheck, MountainSnow, TriangleAlert } from 'lucide-react'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { ExploreHero } from '@/components/explore/ExploreHero'
 import { AppHeader } from '@/components/layout/AppHeader'
 import { StaggerList } from '@/components/motion/StaggerList'
 import { Link } from '@/i18n/navigation'
-import { DEST_META, DEST_ORDER } from '@/lib/destinations/meta'
+import { loadVerifiedDestinations } from '@/lib/destinations/load'
+import { DEST_META } from '@/lib/destinations/meta'
 import type { MapDestination } from '@/lib/map/geo'
-import seed from '../../../data/seed/destinations.json'
 
 export const revalidate = 3600
-
-type Dest = { id: string; name_vi: string; name_en: string; province_vi: string; province_en: string }
-
-async function loadDestinations(): Promise<Dest[]> {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-  // The bundled seed is the fallback, so Explore still renders if Supabase is unreachable.
-  const fallback = seed.filter((d) => d.verified)
-  if (!url || !key) return fallback
-  try {
-    const { data } = await createClient(url, key, { auth: { persistSession: false } })
-      .from('destinations')
-      .select('id, name_vi, name_en, province_vi, province_en')
-      .eq('verified', true)
-    return data && data.length > 0 ? data : fallback
-  } catch {
-    return fallback
-  }
-}
 
 export default async function Explore({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('explore')
   const en = locale === 'en'
-  const rows = (await loadDestinations()).sort((a, b) => DEST_ORDER.indexOf(a.id) - DEST_ORDER.indexOf(b.id))
+  const rows = await loadVerifiedDestinations()
   const mapDests: MapDestination[] = rows.flatMap((d) => {
     const m = DEST_META[d.id]
     return m ? [{ id: d.id, name: en ? d.name_en : d.name_vi, lon: m.lon, lat: m.lat, verified: true, region: 'bac' as const }] : []

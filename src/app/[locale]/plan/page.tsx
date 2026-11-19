@@ -1,39 +1,63 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ChatPlanner } from '@/components/plan/ChatPlanner'
+import { PlanTabs } from '@/components/plan/PlanTabs'
 import { TripForm } from '@/components/trip/TripForm'
+import { loadVerifiedDestinations } from '@/lib/destinations/load'
 import { createSupabaseServer } from '@/lib/supabase/server'
 import { signInWithGoogle } from '@/server/auth'
 
 export const dynamic = 'force-dynamic'
 
-export default async function PlanPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+async function isSignedIn(): Promise<boolean> {
+  try {
+    const supabase = await createSupabaseServer()
+    const { data } = await supabase.auth.getClaims()
+    return Boolean(data?.claims.sub)
+  } catch {
+    return false
+  }
+}
+
+export default async function PlanPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>
+  searchParams: Promise<{ d?: string }>
+}) {
+  const [{ locale }, { d }] = await Promise.all([params, searchParams])
   setRequestLocale(locale)
-  const t = await getTranslations('trip')
-  const supabase = await createSupabaseServer()
-  const [{ data: claims }, { data: rows }] = await Promise.all([
-    supabase.auth.getClaims(),
-    supabase.from('destinations').select('id, name_vi, name_en, province_vi, province_en').eq('verified', true).order('id'),
+  const [t, tt, rows, signedIn] = await Promise.all([
+    getTranslations('plan'),
+    getTranslations('trip'),
+    loadVerifiedDestinations(),
+    isSignedIn(),
   ])
   const en = locale === 'en'
-  const destinations = (rows ?? []).map((d) => ({
-    id: d.id,
-    name: en ? d.name_en : d.name_vi,
-    province: en ? d.province_en : d.province_vi,
+  const destinations = rows.map((r) => ({
+    id: r.id,
+    name: en ? r.name_en : r.name_vi,
+    province: en ? r.province_en : r.province_vi,
   }))
-  const signedIn = Boolean(claims?.claims.sub)
-  const next = en ? '/en/plan' : '/plan'
+  const initial = destinations.some((x) => x.id === d) ? d : undefined
+  const signIn = signInWithGoogle.bind(null, en ? '/en/plan' : '/plan')
 
   return (
-    <main className="mx-auto max-w-xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold">{t('title')}</h1>
-      {signedIn ? (
-        <TripForm destinations={destinations} />
-      ) : (
-        <form action={signInWithGoogle.bind(null, next)} className="rounded-2xl bg-white p-6">
-          <p className="mb-4">{t('signInToSave')}</p>
-          <button className="min-h-12 w-full rounded-xl bg-jade px-4 py-3 font-semibold text-white">{t('signInGoogle')}</button>
-        </form>
-      )}
+    <main className="mx-auto flex max-w-xl flex-col px-4 pt-6 pb-4">
+      <h1 className="mb-4 font-display text-3xl font-bold text-ink">{t('title')}</h1>
+      <PlanTabs
+        chat={<ChatPlanner signedIn={signedIn} destinations={destinations} signIn={signIn} initialDestinationId={initial} />}
+        form={
+          signedIn ? (
+            <TripForm destinations={destinations} initialDestinationId={initial} />
+          ) : (
+            <form action={signIn} className="rounded-2xl border border-line bg-surface p-6">
+              <p className="mb-4 text-ink">{tt('signInToSave')}</p>
+              <button className="min-h-12 w-full rounded-xl bg-jade px-4 py-3 font-semibold text-on-jade">{tt('signInGoogle')}</button>
+            </form>
+          )
+        }
+      />
     </main>
   )
 }
