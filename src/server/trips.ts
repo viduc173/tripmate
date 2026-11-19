@@ -49,3 +49,35 @@ export async function createTrip(input: unknown): Promise<CreateTripState> {
 
   redirect(`/trips/${trip.id}`)
 }
+
+export async function reorderItems(tripId: string, dayIndex: number, orderedItemIds: string[]): Promise<{ ok: boolean }> {
+  const supabase = await createSupabaseServer()
+  const { error } = await supabase.rpc('reorder_trip_items', {
+    p_trip_id: tripId,
+    p_day_index: dayIndex,
+    p_item_ids: orderedItemIds,
+  })
+  return { ok: !error }
+}
+
+export async function addItem(tripId: string, dayIndex: number, placeId: string): Promise<{ ok: boolean }> {
+  const supabase = await createSupabaseServer()
+  const { data: last } = await supabase
+    .from('trip_items')
+    .select('position')
+    .eq('trip_id', tripId)
+    .eq('day_index', dayIndex)
+    .order('position', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+  const { error } = await supabase
+    .from('trip_items')
+    .insert({ trip_id: tripId, day_index: dayIndex, position: (last?.position ?? -1) + 1, place_id: placeId })
+  return { ok: !error }
+}
+
+export async function removeItem(tripId: string, itemId: string): Promise<{ ok: boolean }> {
+  const supabase = await createSupabaseServer()
+  const { error } = await supabase.from('trip_items').delete().eq('id', itemId).eq('trip_id', tripId)
+  return { ok: !error }
+}

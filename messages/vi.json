@@ -43,6 +43,26 @@
     "outbound": "Chiều đi",
     "return": "Chiều về",
     "notFound": "Không tìm thấy chuyến đi.",
-    "empty": "Chưa có địa điểm cho điểm đến này. Dữ liệu đang được bổ sung."
+    "empty": "Chưa có địa điểm cho điểm đến này. Dữ liệu đang được bổ sung.",
+    "moveUp": "Chuyển lên",
+    "moveDown": "Chuyển xuống",
+    "remove": "Bỏ",
+    "lightDay": "Ngày đầu nhẹ nhàng: vừa xuống xe, nghỉ ngơi và ăn sáng trước.",
+    "ride": "{km} km di chuyển",
+    "overnight": "Xe đêm",
+    "perPersonTotal": "{amount}/người",
+    "groupTotal": "Cả nhóm {amount}",
+    "overBudget": "Vượt ngân sách {amount}",
+    "withinBudget": "Trong ngân sách",
+    "estimate": "Chi phí ước lượng, cập nhật khi có dữ liệu.",
+    "offline": "Đang xem bản đã lưu (ngoại tuyến).",
+    "sample": "Bản mẫu với dữ liệu minh hoạ, chưa phải lịch trình thật.",
+    "lodging": "Ở",
+    "legs": "Xe đi/về",
+    "tickets": "Vé tham quan",
+    "rides": "Di chuyển tại chỗ",
+    "food": "Ăn uống",
+    "free": "Miễn phí",
+    "saveError": "Chưa lưu được thay đổi, thử lại."
   }
 }
